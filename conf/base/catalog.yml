@@ -2,3 +2,111 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/catalog-data/introduction/#data-catalog
+
+# --- data_inventory pipeline -------------------------------------------------
+# Read-only inventory/profiling of data/01_raw. See src/modelo_ml_waymo/pipelines/data_inventory.
+
+data_inventory_raw_files_index:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/data_inventory_raw_files_index.parquet
+
+data_inventory_raw_sample_profile:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/data_inventory_raw_sample_profile.parquet
+
+data_inventory_summary:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/data_inventory_summary.parquet
+
+data_inventory_report_md:
+  type: text.TextDataset
+  filepath: data/08_reporting/data_inventory_report.md
+  fs_args:
+    open_args_save: { mode: w, encoding: utf-8 }
+    open_args_load: { mode: r, encoding: utf-8 }
+
+# --- eda pipeline -------------------------------------------------------------
+# Read-only exploratory data analysis of data/01_raw. See src/modelo_ml_waymo/pipelines/eda.
+
+raw_detections:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/detecciones_waymo_like.csv
+
+eda_column_profile:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_column_profile.parquet
+
+eda_categorical_audit:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_categorical_audit.parquet
+
+eda_quality_flags_summary:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_quality_flags_summary.parquet
+
+eda_null_cooccurrence_matrix:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_null_cooccurrence_matrix.parquet
+
+eda_temporal_consistency_by_segment:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_temporal_consistency_by_segment.parquet
+
+eda_target_class_distribution:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_target_class_distribution.parquet
+
+eda_target_imbalance_ratio:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_target_imbalance_ratio.parquet
+
+eda_target_crosstab_long:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_target_crosstab_long.parquet
+
+eda_target_crosstab_association:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_target_crosstab_association.parquet
+
+eda_target_numeric_stats_by_class:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/eda_target_numeric_stats_by_class.parquet
+
+eda_figure_manifest:
+  type: json.JSONDataset
+  filepath: data/02_intermediate/eda_figure_manifest.json
+
+eda_figures:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/figures
+  overwrite: true
+
+eda_report_md:
+  type: text.TextDataset
+  filepath: data/08_reporting/eda_report.md
+  fs_args:
+    open_args_save: { mode: w, encoding: utf-8 }
+    open_args_load: { mode: r, encoding: utf-8 }
+
+signal_mi_scores:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/signal_mi_scores.parquet
+
+signal_separability:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/signal_separability.parquet
+
+signal_baseline_metrics:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/signal_baseline_metrics.parquet
+
+signal_summary:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/signal_summary.parquet
+
+signal_check_report_md:
+  type: text.TextDataset
+  filepath: data/08_reporting/signal_check_report.md
+  fs_args:
+    open_args_save: { mode: w, encoding: utf-8 }
+    open_args_load: { mode: r, encoding: utf-8 }

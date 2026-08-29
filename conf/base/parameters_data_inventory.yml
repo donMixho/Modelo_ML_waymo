@@ -1,0 +1,7 @@
+# Parameters for the 'data_inventory' pipeline.
+# Documentation: https://docs.kedro.org/en/1.3.1/configuration/parameters.html
+
+data_inventory:
+  raw_data_path: data/01_raw
+  sample_max_files: 2
+  sample_max_rows: 20

@@ -18,6 +18,11 @@ data/**
 # also keep all .gitkeep files
 !.gitkeep
 
+# but do track the generated reports and figures (the actual deliverable):
+# raw data (01_raw) and regenerable intermediate parquet (02_intermediate)
+# stay ignored above.
+!data/08_reporting/**
+
 # ignore kedro-viz metadata
 .viz
 
